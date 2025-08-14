@@ -56,8 +56,23 @@ CREATE TABLE prontuarios (
 
    CREATE TABLE exames_solicitados (
       id_solicitado INT PRIMARY KEY AUTO_INCREMENT,
-      id_prontuario INT NOT NULL,
+      id_consulta INT,
       id_exame INT NOT NULL,
-      data_solicitacao DATE DEFAULT CURRENT_DATE,
+      data_solicitacao DATE,
+      FOREIGN KEY (id_consulta) REFERENCES consulta(ID_consulta),
+      FOREIGN KEY (id_exame) REFERENCES exame(ID_Exame)
+ ); 
+ 
+ CREATE TABLE pagamento (
+     id_pagamento INT PRIMARY KEY AUTO_INCREMENT,
+     id_paciente INT NOT NULL,
+     id_consulta INT NOT NULL,
+     valor DECIMAL(10,2),
+     forma_pagamento VARCHAR(50),
+     data_pagamento DATE,
+     FOREIGN KEY (id_paciente) REFERENCES paciente(id_paciente),
+     FOREIGN KEY (id_consulta) REFERENCES consulta(id_consulta)
+);     
+      
    
 
